@@ -1,75 +1,45 @@
-# Nuxt Minimal Starter
+# NextFrame
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+NextFrame ist eine Konferenzplattform, die im Rahmen der Lehrveranstaltung NextGen Web Frontends als Teamprojekt entwickelt wird.
+
+Die Plattform präsentiert die fiktive zweitägige Web-Frontend-Konferenz FrontendNow und soll in Zukunft die Suche nach Sessions, die Anzeige von Speaker-Profilen und die Erstellung eines persönlichen Konferenzprogramms ermöglichen.
+
+Die Anwendung basiert auf Nuxt 4 und Vue 3.
 
 ## Setup
 
-Make sure to install dependencies:
+### Voraussetzungen
+
+- Node.js in einer aktuellen, von Nuxt unterstützten Version
+- npm
+
+### Installation
+
+Repository klonen:
 
 ```bash
-# npm
+git clone https://github.com/Alyra07/nextframe
+cd nextframe
+```
+
+Dependencies installieren:
+
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Entwicklungsserver starten:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Anschließend die im Terminal angezeigte Adresse öffnen (z.B.: `http://localhost:3000`).
 
-Build the application for production:
+## Projektstruktur
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- `app/` – Anwendungscode, Seiten, Layouts und Komponenten
+- `app/composables/` – Wiederverwendbare Anwendungslogik
+- `data/` – Statischer Konferenzdatensatz
+- `tokens/` – Design Tokens
+- `docs/` – Dokumentation unserer Arbeit
