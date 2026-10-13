@@ -1,0 +1,1 @@
+// TODO: conference-data einlesen und in useConferenceData bereitstellen
