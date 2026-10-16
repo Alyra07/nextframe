@@ -1,8 +1,96 @@
 :root {
-/* GLOBAL DESIGN TOKENS (Colors, spacing, typography, borderRadius, layout) */
+  /* ========================================
+     1. PRIMITIVE TOKENS — Colors
+     ======================================== */
+  --color-neutral-950: #080B10;
+  --color-navy-900: #172441;
+  --color-neutral-100: #E2E5EB;
+
+  --color-blue-500: #2D76EE;
+  --color-blue-700: #0D449D;
+  --color-purple-500: #A64DEB;
+  --color-purple-700: #600F9F;
+
+  /* ========================================
+     2. PRIMITIVE TOKENS — Spacing (4px base)
+     ======================================== */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem;  /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem;    /* 16px */
+  --space-6: 1.5rem;  /* 24px */
+  --space-8: 2rem;    /* 32px */
+  --space-12: 3rem;   /* 48px */
+
+  /* ========================================
+     3. PRIMITIVE TOKENS — Typography
+     ======================================== */
+  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.25rem;   /* 20px */
+  --font-size-xl: 1.5rem;    /* 24px */
+  --font-size-2xl: 2rem;     /* 32px */
+  --font-size-3xl: 2.5rem;   /* 40px */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.2;
+  --line-height-heading: 1.3;
+  --line-height-body: 1.5;
+
+  /* ========================================
+     4. PRIMITIVE TOKENS — Border radius
+     ======================================== */
+  --radius-0: 0;
+  --radius-sm: 0.5rem;   /* 8px */
+  --radius-md: 0.75rem;  /* 12px */
+  --radius-lg: 1.25rem;  /* 20px */
+  --radius-xl: 1.75rem;  /* 28px */
+  --radius-full: 9999px;
+
+  /* ========================================
+     5. SEMANTIC TOKENS — Default dark design
+     ======================================== */
+  --color-background: var(--color-neutral-950);
+  --color-surface: var(--color-navy-900);
+  --color-surface-contrast: var(--color-neutral-100);
+
+  --color-text-primary: var(--color-neutral-100);
+  --color-text-on-light: var(--color-neutral-950);
+
+  /* Brand accents: suitable as text on background,
+     not as backgrounds for normal-size light text. */
+  --color-primary: var(--color-blue-500);
+  --color-accent: var(--color-purple-500);
+
+  /* Darker interactive surfaces for light button labels. */
+  --color-primary-action: var(--color-blue-700);
+  --color-accent-action: var(--color-purple-700);
+  --color-text-on-action: var(--color-neutral-100);
 
 
-  /* Primitive Farben */
-  --color-black: #000000;
 
+  /* Semantic spacing */
+  --spacing-card: var(--space-6);
+  --spacing-grid: var(--space-4);
+  --spacing-section: var(--space-8);
+
+  /* Semantic border radius */
+  --radius-button: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --radius-panel: var(--radius-xl);
+  --radius-badge: var(--radius-full);
+
+  /* Semantic typography */
+  --font-body: var(--font-family-base);
+  --text-body-size: var(--font-size-base);
+  --text-body-line-height: var(--line-height-body);
+  --text-heading-line-height: var(--line-height-heading);
 }
