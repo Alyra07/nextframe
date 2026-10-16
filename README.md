@@ -2,9 +2,11 @@
 
 NextFrame ist eine Konferenzplattform, die im Rahmen der Lehrveranstaltung NextGen Web Frontends als Teamprojekt entwickelt wird.
 
-Die Plattform präsentiert die fiktive zweitägige Web-Frontend-Konferenz FrontendNow und soll in Zukunft die Suche nach Sessions, die Anzeige von Speaker-Profilen und die Erstellung eines persönlichen Konferenzprogramms ermöglichen.
+Die Plattform präsentiert die fiktive zweitägige Web-Frontend-Konferenz FrontendNow und soll in Zukunft die Suche nach Sessions, die Anzeige von Speaker-Profilen und die Erstellung eines persönlichen Konferenzprogramms ermöglichen. Die Anwendung basiert auf Nuxt 4 und Vue 3.
 
-Die Anwendung basiert auf Nuxt 4 und Vue 3.
+### Contributors:
+- Antonia Novak (GitHub: T0niana)
+- Mirjam McLachlan (GitHub: Alyra07)
 
 ## Setup
 
