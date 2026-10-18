@@ -19,7 +19,7 @@ Vorteile: großes Ökosystem, flexible Architektur, wiederverwendbare Komponente
 Nachteile: andere Konzepte als Vue sowie zusätzlicher Integrationsaufwand. Da in der Lehrveranstaltung Vue vorgegeben ist, ist React keine zulässige Wahl, sondern dient nur als Vergleich.
 
 **3. Entscheidung**
-Wir entscheiden uns gemeinsam für Nuxt 4 mit Vue 3 und TypeScript. Für NextFrame überwiegen die Vorteile des integrierten Routings und der klaren Konventionen: Sessions, Speaker und der persönliche Zeitplan benötigen auf Dauer unterschiedliche Ansichten. Die einheitliche Struktur erleichtert außerdem die Aufteilung und Abstimmung der Arbeit im Team.
+Wir entscheiden uns gemeinsam für Nuxt 4 mit Vue 3. TypeScript wird ergänzend für gemeinsame Typdefinitionen und bei Bedarf in Vue-Komponenten verwendet. Die spezialisierten Composables setzen wir hingegen als JavaScript-Dateien um. Für NextFrame überwiegen die Vorteile des integrierten Routings und der klaren Konventionen: Sessions, Speaker und der persönliche Zeitplan benötigen auf Dauer unterschiedliche Ansichten. Die einheitliche Struktur erleichtert außerdem die Aufteilung und Abstimmung der Arbeit im Team.
 Unsere vereinbarte Trennung in Base/UI-, Feature- und Layout-Komponenten bleibt bestehen. Die Logik wird in spezialisierten Composables wie useConferenceData(), später useSessionFilters() und useSchedule(), gekapselt. Für die Filterung bleibt der geplante Headless-Ansatz erhalten.
 
 **4. Konsequenzen**
