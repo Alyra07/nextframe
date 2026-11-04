@@ -24,7 +24,6 @@ const levels = computed(() =>
 </script>
 
 <template>
-  <main>
     <h1>Explore Sessions</h1>
     <p>Discover sessions at FrontendNow.</p>
 
@@ -42,5 +41,4 @@ const levels = computed(() =>
     </button>
 
     <SessionList :sessions="filteredSessions" />
-  </main>
 </template>

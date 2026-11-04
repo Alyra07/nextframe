@@ -57,6 +57,17 @@
 /* Main */
 .site-main {
   flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .site-main {
+    padding: var(--space-6) var(--space-4);
+  }
 }
 
 /* Footer */
