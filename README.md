@@ -36,7 +36,7 @@ npm ci
 ```bash
 npm run dev
 ```
-Anschließend die im Terminal angezeigte Adresse öffnen (z. B. `http://localhost:3000`).
+Anschließend die im Terminal angezeigte Adresse öffnen (`http://127.0.0.1:3000/`).
 
 
 ### Statischen Build generieren (SSG + CSR)
@@ -50,7 +50,7 @@ Die Rendering-Strategien sind in `nuxt.config.ts` konfiguriert und unter `docs/s
 
 **Statischen Build erstellen:**
 ```bash
-npx nuxt generate
+npm run generate
 ```
 Nuxt erstellt die Dateien im Verzeichnis `.output/public/`. Die dynamischen Detailrouten werden über die Prerender-Konfiguration registriert.
 
