@@ -1,5 +1,6 @@
 # AI-LOG - Mirjam McLachlan (Person 2)
 
+
 ## Datum: 04.11.2026
 
 ### Integration der Session-Detailseiten in die bestehende Architektur
@@ -33,3 +34,14 @@
 **Prompt:** "Wie stelle ich sicher, dass SSG auch wirklich für das Session-Detailseiten Feature verwendet wird? *Hier habe ich `[id].vue` & `nuxt.config.ts` angehängt*"
 
 **Zweck:** Überprüfung der bestehenden Session-Detailseiten und Einrichtung des Nuxt-Prerenderings für alle Session-Routen. Ziel war die technische Umsetzung der festgelegten SSG-Strategie sowie deren Überprüfung durch einen Generate-Build.
+
+
+## Datum: 05.11.2026
+
+### Kombination von SSG & CSR im statischen Build
+
+**Tool:** ChatGPT (GPT-6)
+
+**Prompt:** "Ändert sich unser statische Build in Zukunft, wenn wir wie geplant für das "Mein Programm" Dashboard CSR verwenden? Bleiben die build commands gleich wie im README (angehängt) angegeben, sobald die /mein-programm route hinzugefügt wurde? Bitte beschreibe wie das funktioniert"
+
+**Zweck:** Überprüfung, ob SSG und CSR innerhalb desselben Nuxt-Generate Build kombiniert werden können und Erklärung, wie das im Hintergrund funktioniert. Überprüfung, ob das README im Bezug auf Build, lokale Bereitstellung und clientseitige Persistenz noch angepasst werden sollte.

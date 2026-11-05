@@ -18,26 +18,49 @@ Ziel ist es, für jeden Anwendungsteil eine nachvollziehbare Rendering-Entscheid
 
 ### 1. Session-Übersicht mit Filtern - SSG mit clientseitiger Filterung
 
-### 2. Session-Detailseiten - SSG
+
+### 2. Session-Detailseiten – SSG
 
 **Kontext**
 
-Für jede der 20 Sessions unserer Konferenzplattform NextFrame gibt es eine eigene Detailseite unter `/sessions/[id]`. Dort werden Titel, Beschreibung, Tag, Uhrzeit, Raum, etc., sowie die zugehörigen Speaker angezeigt. Alle Informationen stammen aus der statischen `conference-data.json` und stehen bereits zur Build-Zeit fest.
+Für jede der 20 Sessions von NextFrame gibt es eine eigene Detailseite unter `/sessions/[id]`. Angezeigt werden unter anderem Titel, Abstract, Tag, Uhrzeit, Raum, Track, Level, Format und die zugehörigen Speaker. Sämtliche Informationen stammen aus der statischen `conference-data.json` und stehen bereits zur Build-Zeit vollständig fest.
 
 **Optionen**
 
-- **SSG (Static Site Generation):** Die Detailseiten werden während des Builds als statisches HTML generiert. Dadurch können sie schnell ausgeliefert werden, ohne dass bei jedem Aufruf eine serverseitige Berechnung notwendig ist.
-- **SSR (Server-Side Rendering):** Die HTML-Seiten werden bei jeder Anfrage serverseitig gerendert - das ist bei häufigen Datenänderungen sinnvoll.
-- **ISR (Incremental Static Regeneration):** Statische Seiten können nach festgelegten Intervallen oder gezielter Revalidierung neu generiert werden, sofern eine aktuelle Datenquelle verfügbar ist.
+- **SSG** eignet sich, weil alle 20 Routen und ihre Inhalte bereits beim Build bekannt sind. Die Seiten können daher vollständig vorab erzeugt und anschließend ohne weitere Datenabfrage ausgeliefert werden.
+
+- **ISR** wäre interessant, wenn Session-Daten zwar überwiegend statisch wären, aber bspw. kurzfristige Raum- oder Zeitänderungen übernommen werden müssten. Dafür wäre jedoch eine aktualisierbare Datenquelle und eine Revalidierungsstrategie notwendig.
 
 **Entscheidung**
 
-Wir entscheiden uns für **SSG**, da die Session-Daten vollständig vorliegen und keine laufenden Aktualisierungen notwendig sind. Nuxt 4 unterstützt die Vorabgenerierung der dynamischen Session-Routen und der Datenzugriff erfolgt weiterhin zentral über `useConferenceData()`. Auch bei einer realen Konferenz wäre SSG für selten veränderte Session-Details grundsätzlich geeignet, solange bei Änderungen zeitnah ein neuer Build + Deployment erfolgen können. Kurzfristige Raum- oder Zeitverschiebungen könnten jedoch aktuellere Daten erfordern – für diesen Fall wäre ISR eine mögliche Alternative. Da unser Projekt aber ausschließlich einen statischen JSON-Datensatz verwendet, überwiegen für uns die Vorteile von SSG.
+Wir entscheiden uns für **SSG**. Für den vorhandenen statischen Datensatz bietet eine erneute Generierung einzelner Seiten keinen Vorteil gegenüber einem normalen Build. Gleichzeitig passen die Detailseiten gut zur Vorabgenerierung, da ihre Anzahl begrenzt und bekannt ist. Der zentrale Datenzugriff über `useConferenceData()` bleibt dabei unverändert und die dynamischen Session-Routen können beim Build erzeugt werden. Gegenüber einer Laufzeitlösung vermeiden wir damit unnötige Serverlogik und zusätzliche Datenzugriffe.
 
 **Konsequenzen**
 
-Die Detailseiten können schnell und ohne laufende Serverberechnung ausgeliefert werden. Ein Nachteil ist, dass Änderungen an den Konferenzdaten einen erneuten Build erfordern. Da unser Datensatz aber statisch ist, stellt das für dieses Projekt keine Einschränkung dar.
+Die Detailseiten sind direkt auslieferbar und benötigen zur Laufzeit keine serverseitige Verarbeitung. Änderungen an `conference-data.json` werden allerdings erst nach einem neuen Build sichtbar. Für den in diesem Projekt vollständig statischen Datensatz ist diese Einschränkung akzeptabel.
+
 
 ### 3. Speaker-Profile - SSG
 
-### 4. "Mein Programm" Dashboard - CSR
+
+### 4. „Mein Programm“ Dashboard – CSR
+
+**Kontext**
+
+Im Dashboard „Mein Programm“ können NutzerInnen Sessions zu ihrem persönlichen Zeitplan hinzufügen oder daraus entfernen. Gespeichert werden ausschließlich die ausgewählten Session-IDs im `localStorage` unter `nextframe:my-program`. Damit ist der dargestellte Inhalt für jede Person unterschiedlich und ausschließlich im jeweiligen Browser verfügbar.
+
+**Optionen**
+
+- **CSR** kann direkt auf `localStorage` zugreifen und den persönlichen Zeitplan nach der Rehydration des States darstellen. Änderungen durch hinzufügen/entfernen einer Session können unmittelbar reaktiv übernommen werden.
+
+- **SSG** könnte zwar die Grundstruktur des Dashboards vorab erzeugen, kennt beim Build jedoch keine persönliche Auswahl. Der eigentliche nutzerspezifische Inhalt müsste daher trotzdem clientseitig ergänzt werden.
+
+- **SSR** könnte personalisierte Inhalte bereits auf dem Server erzeugen, würde dafür aber voraussetzen, dass der persönliche Zeitplan dem Server bekannt ist, etwa über Login, Cookies oder serverseitige Speicherung. Diese Infrastruktur ist aber in unserem Projekt nicht vorgesehen.
+
+**Entscheidung**
+
+Wir entscheiden uns für **CSR**, weil die einzige Quelle des personalisierten Zustands der Browser ist. `useSchedule()` verwaltet den gemeinsamen reaktiven State, und beim clientseitigen Initialisieren werden dann gespeicherte IDs aus `localStorage` gelesen, validiert und über `useConferenceData()` den vollständigen Session-Daten zugeordnet. CSR entspricht damit direkt unserer bestehenden State-Management-Architektur und benötigt weder Backend noch zusätzliche Synchronisationsmechanismen.
+
+**Konsequenzen**
+
+Änderungen am persönlichen Programm werden sofort dargestellt und bleiben nach einem Reload erhalten. Dafür kann der individuelle Inhalt erst nach der clientseitigen Rehydration angezeigt werden. Außerdem bleibt der Zeitplan ohne zusätzliche Synchronisierung auf den jeweiligen Browser beschränkt.
