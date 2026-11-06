@@ -53,18 +53,19 @@ defineProps({
   font-weight: var(--font-weight-medium);
 }
 
-/* Responsive session grid */
+/* Responsive BentoBox-style session grid */
 .session-list__grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(100%, 320px), 1fr)
-  );
+  columns: 3;
+  column-gap: var(--spacing-grid);
 
-  gap: var(--spacing-grid);
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.session-list__item {
+  break-inside: avoid;
+  margin-bottom: var(--spacing-grid);
 }
 
 .session-list__empty {
@@ -75,5 +76,17 @@ defineProps({
 
   font-size: var(--font-size-base);
   line-height: var(--text-body-line-height);
+}
+
+@media (max-width: 900px) {
+  .session-list__grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .session-list__grid {
+    columns: 1;
+  }
 }
 </style>

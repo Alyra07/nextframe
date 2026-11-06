@@ -21,9 +21,10 @@ const isAdded = computed(() =>
 
 <template>
   <BaseButton
+    size="small"
     :variant="isAdded ? 'secondary' : 'primary'"
     @click="toggleSession(sessionId)"
   >
-    {{ isAdded ? '✓ Gemerkt' : '+ Merken' }}
+    {{ isAdded ? '- Entfernen' : '+ Hinzufügen' }}
   </BaseButton>
 </template>

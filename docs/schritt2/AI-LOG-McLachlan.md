@@ -45,3 +45,30 @@
 **Prompt:** "Ändert sich unser statische Build in Zukunft, wenn wir wie geplant für das "Mein Programm" Dashboard CSR verwenden? Bleiben die build commands gleich wie im README (angehängt) angegeben, sobald die /mein-programm route hinzugefügt wurde? Bitte beschreibe wie das funktioniert"
 
 **Zweck:** Überprüfung, ob SSG und CSR innerhalb desselben Nuxt-Generate Build kombiniert werden können und Erklärung, wie das im Hintergrund funktioniert. Überprüfung, ob das README im Bezug auf Build, lokale Bereitstellung und clientseitige Persistenz noch angepasst werden sollte.
+
+
+## Datum: 06.11.2026
+
+### Implementierung von useSchedule.js
+
+**Tool:** ChatGPT (GPT-5.6 Sol)
+
+**Prompt:** "Mein Ziel ist die Umsetzung der Grundfunktionen von "Mein Programm" unter Berücksichtigung des State-Management-Konzepts und Rendering-Strategie-ADRs (wir haben uns bei "mein Programm" für CSR entschieden). Hilf mir ein neues `useSchedule.js` composable zu erstellen, das mit `useState()` einen gemeinsamen reaktiven Zustand halten soll. Sessions werden ausschließlich als Ids im localStorage gespeichert, die beim Laden validieren und die vollständigen Session-Daten über `useConferenceData()` auflösen. *`useConferenceData.js` + relevante ADRs angehängt*"
+
+**Zweck:** Implementierung des zentralen `useSchedule()`-Composable für "Mein Programm". Mit ChatGPT's Hilfe wurden gemeinsamer reaktiver State `useState()`, Speicherung ausschließlich von Session-IDs, Validierung, `localStorage`-Persistenz und Rehydration gemäß dem bestehenden State-Management-Konzept umgesetzt.
+
+### Extraktion der „Mein Programm“-Übersicht
+
+**Tool:** ChatGPT (GPT-5.6 Sol)
+
+**Prompt:** "Ich möchte die Darstellung der hinzugefügten Sessions aus `pages/mein-programm.vue` (angehängt) in eine eigene Komponente unter `components/features/schedule/` auslagern, weil ich finde, dass das schön die responsibilities in unserem Projekt auf `/pages` (Route), `/composables` (Logik) und `/components` (Darstellung) aufteilt. Beurteile ob das sinnvoll ist, und wenn ja, hilf mir dabei."
+
+**Zweck:** Aufteilung der „Mein Programm“-Seite in eine schlanke Page und eine separate Feature-Komponente. Die Darstellung von "Mein Programm" wurde in `ScheduleOverview.vue` ausgelagert, während State und Persistenz weiterhin über `useSchedule()` verwaltet werden.
+
+### Styling der "Mein Programm"-Interaktion (Buttons)
+
+**Tool:** ChatGPT (GPT-5.6 Sol)
+
+**Prompt:** "Ich möchte den `ScheduleButton` kleiner gestalten und den `BaseButton` um einen optionalen NuxtLink erweitern. Wie kann ich diese Anpassungen umsetzen? Bitte hilf mir auch mit dem CSS für den ScheduleButton: *ScheduleButton & BaseButton angehängt*"
+
+**Zweck:** Überarbeitung der "Mein Programm"-Interaktion (`ScheduleButton`) und Session-Darstellung auf der Homepage. Der wiederverwendbare `BaseButton` wurde um eine kleinere Variante und einen optionalen Link erweitert.
