@@ -146,4 +146,10 @@ const { getTrackById } = useConferenceData()
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
 }
+
+/* Session actions (buttons) */
+.session-card__actions {
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
 </style>

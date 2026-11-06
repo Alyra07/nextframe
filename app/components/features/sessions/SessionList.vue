@@ -1,6 +1,7 @@
 
 <script setup>
 import SessionCard from './SessionCard.vue'
+import ScheduleButton from '~/components/features/schedule/ScheduleButton.vue'
 
 defineProps({
   sessions: {
@@ -8,9 +9,8 @@ defineProps({
     required: true
   }
 })
-
-const { getTrackById } = useConferenceData()
 </script>
+
 <template>
   <section class="session-list">
     <p class="session-list__count" aria-live="polite">
@@ -31,7 +31,11 @@ const { getTrackById } = useConferenceData()
         :key="session.id"
         class="session-list__item"
       >
-        <SessionCard :session="session" />
+        <SessionCard :session="session">
+          <template #actions>
+            <ScheduleButton :session-id="session.id" />
+          </template>
+        </SessionCard>
       </li>
     </ul>
   </section>
