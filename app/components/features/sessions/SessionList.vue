@@ -1,35 +1,75 @@
 
 <script setup>
+import SessionCard from './SessionCard.vue'
+
 defineProps({
-  sessions: Array
+  sessions: {
+    type: Array,
+    required: true
+  }
 })
 
 const { getTrackById } = useConferenceData()
 </script>
-
 <template>
-  <div class="session-list">
-    <p>{{ sessions.length }} sessions found</p>
-
-    <p v-if="sessions.length === 0">
-      No sessions match your filters.
+  <section class="session-list">
+    <p class="session-list__count" aria-live="polite">
+      {{ sessions.length }}
+      {{ sessions.length === 1 ? 'Session gefunden' : 'Sessions gefunden' }}
     </p>
 
-    <ul v-else>
+    <p
+      v-if="sessions.length === 0"
+      class="session-list__empty"
+    >
+      Keine Sessions entsprechen den ausgewählten Filtern.
+    </p>
+
+    <ul v-else class="session-list__grid">
       <li
         v-for="session in sessions"
         :key="session.id"
+        class="session-list__item"
       >
-        <NuxtLink :to="`/sessions/${session.id}`">
-          <h2>{{ session.title }}</h2>
-        </NuxtLink>
-
-        <p>
-          {{ getTrackById(session.trackId)?.name }}
-          · {{ session.startTime }}–{{ session.endTime }}
-          · {{ session.level }}
-        </p>
+        <SessionCard :session="session" />
       </li>
     </ul>
-  </div>
+  </section>
 </template>
+
+<style scoped>
+.session-list {
+  margin-top: var(--spacing-section);
+}
+
+.session-list__count {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Responsive session grid */
+.session-list__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 320px), 1fr)
+  );
+
+  gap: var(--spacing-grid);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.session-list__empty {
+  padding: var(--spacing-card);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border-radius: var(--radius-card);
+
+  font-size: var(--font-size-base);
+  line-height: var(--text-body-line-height);
+}
+</style>
