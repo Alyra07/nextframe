@@ -24,21 +24,18 @@ const levels = computed(() =>
 </script>
 
 <template>
-    <h1>Explore Sessions</h1>
-    <p>Discover sessions at FrontendNow.</p>
+  <h1>Session-Übersicht</h1>
+  <h3>Entdecke die Sessions der FrontendNow-Konferenz.</h3>
 
-    <SessionFilters
-      v-model:track="selectedTrack"
-      v-model:day="selectedDay"
-      v-model:level="selectedLevel"
-      :tracks="tracks"
-      :days="days"
-      :levels="levels"
-    />
+  <SessionFilters
+    v-model:track="selectedTrack"
+    v-model:day="selectedDay"
+    v-model:level="selectedLevel"
+    :tracks="tracks"
+    :days="days"
+    :levels="levels"
+    @reset="resetFilters"
+  />
 
-    <button type="button" @click="resetFilters">
-      Reset filters
-    </button>
-
-    <SessionList :sessions="filteredSessions" />
+  <SessionList :sessions="filteredSessions" />
 </template>
