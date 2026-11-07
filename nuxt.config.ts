@@ -16,6 +16,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
 
+  routeRules: {
+    '/mein-programm': {
+      ssr: false
+    }
+  },
+
   nitro: {
     prerender: {
       crawlLinks: false,

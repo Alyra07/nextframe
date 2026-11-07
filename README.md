@@ -54,11 +54,11 @@ npm run generate
 ```
 Nuxt erstellt die Dateien im Verzeichnis `.output/public/`. Die dynamischen Detailrouten werden über die Prerender-Konfiguration registriert.
 
-**Generierten Build lokal testen:**
+**Generierten Build testen:**
 ```bash
 npx serve .output/public
 ```
-Anschließend die im Terminal angezeigte lokale Adresse öffnen.
+Anschließend die im Terminal angezeigte Local oder Network Adresse öffnen.
 
 **Funktionstest:** Die Session-Übersicht, Speaker-Profile und Detailseiten sollten direkt erreichbar sein. Im Dashboard „Mein Programm“ sollte die persönliche Session-Auswahl nach einem Neuladen erhalten bleiben.
 

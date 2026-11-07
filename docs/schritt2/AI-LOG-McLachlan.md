@@ -72,3 +72,14 @@
 **Prompt:** "Ich möchte den `ScheduleButton` kleiner gestalten und den `BaseButton` um einen optionalen NuxtLink erweitern. Wie kann ich diese Anpassungen umsetzen? Bitte hilf mir auch mit dem CSS für den ScheduleButton: *ScheduleButton & BaseButton angehängt*"
 
 **Zweck:** Überarbeitung der "Mein Programm"-Interaktion (`ScheduleButton`) und Session-Darstellung auf der Homepage. Der wiederverwendbare `BaseButton` wurde um eine kleinere Variante und einen optionalen Link erweitert.
+
+
+## Datum: 07.11.2026
+
+### CSR-Konfiguration für "Mein Programm"
+
+**Tool:** ChatGPT (GPT-5.6 Sol)
+
+**Prompt:** "Für "Mein Programm" möchte ich nach unserer Rendering-Strategie Entscheidung CSR implementieren. Überprüfe nochmal ob mein `useSchedule.js` und die aktuelle `nuxt.config.ts` dafür korrekt aufgestellt ist und beschreibe wie ich es im Build testen kann."
+
+**Zweck:** Korrektes Umsetzen und Testen der festgelegten CSR-Strategie für das "Mein Programm"-Feature. Die Route `/mein-programm` wurde über Nuxt Route Rules von SSR ausgeschlossen, während der persönliche State weiterhin clientseitig aus `localStorage` rehydriert wird.
