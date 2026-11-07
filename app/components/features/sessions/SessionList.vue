@@ -1,6 +1,7 @@
 
 <script setup>
 import SessionCard from './SessionCard.vue'
+import ScheduleButton from '~/components/features/schedule/ScheduleButton.vue'
 
 defineProps({
   sessions: {
@@ -8,9 +9,8 @@ defineProps({
     required: true
   }
 })
-
-const { getTrackById } = useConferenceData()
 </script>
+
 <template>
   <section class="session-list">
     <p class="session-list__count" aria-live="polite">
@@ -31,7 +31,11 @@ const { getTrackById } = useConferenceData()
         :key="session.id"
         class="session-list__item"
       >
-        <SessionCard :session="session" />
+        <SessionCard :session="session">
+          <template #actions>
+            <ScheduleButton :session-id="session.id" />
+          </template>
+        </SessionCard>
       </li>
     </ul>
   </section>
@@ -49,18 +53,19 @@ const { getTrackById } = useConferenceData()
   font-weight: var(--font-weight-medium);
 }
 
-/* Responsive session grid */
+/* Responsive BentoBox-style session grid */
 .session-list__grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(100%, 320px), 1fr)
-  );
+  columns: 3;
+  column-gap: var(--spacing-grid);
 
-  gap: var(--spacing-grid);
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.session-list__item {
+  break-inside: avoid;
+  margin-bottom: var(--spacing-grid);
 }
 
 .session-list__empty {
@@ -71,5 +76,17 @@ const { getTrackById } = useConferenceData()
 
   font-size: var(--font-size-base);
   line-height: var(--text-body-line-height);
+}
+
+@media (max-width: 900px) {
+  .session-list__grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .session-list__grid {
+    columns: 1;
+  }
 }
 </style>

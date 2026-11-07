@@ -66,7 +66,6 @@ const { getTrackById } = useConferenceData()
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  height: 100%;
 }
 
 /* Track & level */
@@ -145,5 +144,10 @@ const { getTrackById } = useConferenceData()
   color: var(--color-accent);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
+}
+
+/* Session actions (buttons) */
+.session-card__actions {
+  padding-top: var(--space-2);
 }
 </style>

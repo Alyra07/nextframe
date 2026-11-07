@@ -8,7 +8,6 @@
 .base-card {
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
 
   padding: var(--spacing-card);
   background-color: var(--color-surface);

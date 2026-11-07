@@ -2,6 +2,9 @@
 <!-- SessionDetail.vue stellt nur die Session-Details dar, die von der Seite /sessions/[id] übergeben werden!! -->
 
 <script setup>
+import BaseButton from '~/components/base/BaseButton.vue'
+import ScheduleButton from '~/components/features/schedule/ScheduleButton.vue'
+
 defineProps({
   session: {
     type: Object,
@@ -23,13 +26,20 @@ defineProps({
 </script>
 
 <template>
-  <article>
+  <article class="session-detail">
     <h1>{{ session.title }}</h1>
 
-    <!-- NuxtLink zu /sessions ändern falls die SessionList in Zukunft in einer anderen Route implementiert wird -->
-    <NuxtLink to="/">
-      Zurück zur gesamten Session-Übersicht
-    </NuxtLink>
+    <div class="session-detail__actions">
+      <BaseButton
+        to="/"
+        size="small"
+        variant="secondary"
+      >
+        ← Zurück zur Übersicht
+      </BaseButton>
+
+      <ScheduleButton :session-id="session.id" />
+    </div>
 
     <section>
       <h2>Beschreibung</h2>
@@ -71,7 +81,6 @@ defineProps({
           v-for="speaker in speakers"
           :key="speaker.id"
         >
-        <!-- Eigener Link zur jeweiligen Speaker-Profilseite -->
           <NuxtLink :to="`/speakers/${speaker.id}`">
             {{ speaker.name }}
           </NuxtLink>
@@ -84,3 +93,12 @@ defineProps({
     </section>
   </article>
 </template>
+
+<style scoped>
+.session-detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+</style>
