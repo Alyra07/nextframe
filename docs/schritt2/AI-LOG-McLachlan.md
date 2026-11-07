@@ -83,3 +83,11 @@
 **Prompt:** "Für "Mein Programm" möchte ich nach unserer Rendering-Strategie Entscheidung CSR implementieren. Überprüfe nochmal ob mein `useSchedule.js` und die aktuelle `nuxt.config.ts` dafür korrekt aufgestellt ist und beschreibe wie ich es im Build testen kann."
 
 **Zweck:** Korrektes Umsetzen und Testen der festgelegten CSR-Strategie für das "Mein Programm"-Feature. Die Route `/mein-programm` wurde über Nuxt Route Rules von SSR ausgeschlossen, während der persönliche State weiterhin clientseitig aus `localStorage` rehydriert wird.
+
+### Styling "Mein Programm"-Dashboard
+
+**Tool:** ChatGPT (GPT-5.6 Sol)
+
+**Prompt:** "Ich möchte `ScheduleOverview.vue` als einfache Tabelle gestalten: Session-Titel verlinken zur Detailseite, Speaker zu deren profiles und rechts ist der bereits bestehende `ScheduleButton` zum direkten Entfernen. Hilf mir bitte mit einfachem CSS (`ScheduleOverview.vue` angehängt)"
+
+**Zweck:** Erweiterung der persönlichen Programmübersicht um eine übersichtliche Tabelle + direkte Navigation zu Session- & Speaker-Detailseiten. Das Styling wurde bewusst minimal gehalten.
