@@ -70,3 +70,4 @@ Anschließend die im Terminal angezeigte Local oder Network Adresse öffnen.
 - `data/` – Statischer Konferenzdatensatz
 - `tokens/` – Design Tokens
 - `docs/` – Dokumentation unserer Arbeit
+- `public/` - Icons, Webmanifest & Service-Worker (`sw.js`)

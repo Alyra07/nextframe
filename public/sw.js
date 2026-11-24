@@ -9,8 +9,8 @@ self.addEventListener('activate', event => {
     (async () => {
       const cacheNames = await caches.keys()
 
-      // Nur veraltete App-Shell-Caches dieser Anwendung entfernen.
-      // Mirjams Daten-Cache bleibt hier unberührt.
+      // Nur veraltete App-Shell-Caches dieser Anwendung entfernen
+      // -> Mirjams Daten-Cache bleibt hier unberührt
       await Promise.all(
         cacheNames
           .filter(name =>
@@ -31,10 +31,10 @@ self.addEventListener('activate', event => {
 // Gemäß Offline-Konzept:
 // App-Shell und statische Build-Dateien werden Cache First geladen.
 // Persönliche Session-IDs bleiben ausschließlich im localStorage.
-
 // App-Shell bereits beim Installieren vorbereiten.
 // Dadurch sind auch JS/CSS vorhanden, die vor der ersten
 // Service-Worker-Aktivierung vom Browser geladen wurden.
+
 self.addEventListener('install', event => {
   event.waitUntil(
     (async () => {
@@ -65,7 +65,7 @@ self.addEventListener('fetch', event => {
     return
   }
 
-  // Diese Pfade behandelt ausschließlich Mirjams Listener.
+  // Diese Pfade behandelt ausschließlich Mirjams Listener
   if (
     url.pathname.startsWith('/sessions/') ||
     url.pathname.startsWith('/speakers/')
@@ -75,6 +75,7 @@ self.addEventListener('fetch', event => {
 
   const pagePath = url.pathname.replace(/\/$/, '') || '/'
 
+  // App-Shell-Seiten (HTML) und Nuxt-Payloads (JSON) cachen
   const isShellPage =
     request.mode === 'navigate' &&
     (pagePath === '/' || pagePath === '/mein-programm')
@@ -95,8 +96,7 @@ self.addEventListener('fetch', event => {
     return
   }
 
-  // Seiten unabhängig von Query-Parametern und abschließendem
-  // Slash zuordnen. Nuxt-Payloads wie bei Mirjam ohne _b speichern.
+  // Seiten unabhängig von Query-Parametern und abschließendem Slash zuordnen
   const cacheKey = isShellPage
     ? url.origin + pagePath
     : isShellPayload
@@ -129,7 +129,7 @@ self.addEventListener('fetch', event => {
           )
         }
 
-        // Für fehlendes JS/CSS/JSON keine HTML-Fehlerseite liefern.
+        // Für fehlendes JS/CSS/JSON keine HTML-Fehlerseite liefern
         return Response.error()
       }
 
@@ -137,7 +137,7 @@ self.addEventListener('fetch', event => {
         try {
           await cache.put(cacheKey, networkResponse.clone())
         } catch (error) {
-          // Ein Speicherproblem soll das Online-Laden nicht verhindern.
+          // Ein Speicherproblem soll das Online-Laden nicht verhindern
           console.warn('App-Shell konnte nicht gecacht werden.', error)
         }
       }
@@ -146,8 +146,10 @@ self.addEventListener('fetch', event => {
     })()
   )
 })
-// --- SESSION- & SPEAKER-SEITEN: CACHE FIRST ---
 
+// --- SESSION- & SPEAKER-SEITEN: CACHE FIRST ---
+// Aufgabe C - Mirjam (Person 2)
+//
 // Begründung gemäß /docs/schritt3/02-offline-strategie-konzept.md:
 // Session- und Speaker-Daten sind statisch und werden zur Laufzeit nicht verändert.
 // Bereits geladene Seiten werden deshalb bevorzugt aus dem Cache ausgeliefert -> So bleiben sie auch bei schlechtem WLAN verfügbar

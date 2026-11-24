@@ -19,6 +19,12 @@ export default defineNuxtConfig({
     head: {
       link: [
         {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '192x192',
+          href: '/icons/pwa-192x192.png'
+        },
+        {
           rel: 'manifest',
           href: '/manifest.webmanifest'
         },
