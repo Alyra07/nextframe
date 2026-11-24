@@ -5,7 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --host 127.0.0.1",
-    "generate": "nuxt generate",
+    "generate": "nuxt generate && node scripts/create-shell-assets.mjs",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },

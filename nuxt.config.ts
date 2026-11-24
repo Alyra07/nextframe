@@ -47,6 +47,7 @@ export default defineNuxtConfig({
       crawlLinks: false,
       routes: [
         '/',
+        '/mein-programm',
         ...sessionRoutes,
         ...speakerRoutes
       ]
